@@ -30,7 +30,6 @@ public class MainService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.i("TAG","MainService开始运行");
                 CalenderDatabaseHelper calenderDatabaseHelper=new CalenderDatabaseHelper(MainService.this,"calenderDatabase.db",null,1);
                 SQLiteDatabase db=calenderDatabaseHelper.getWritableDatabase();
                 Cursor cursor = db.rawQuery("select * from calenderDataTable order by date,time asc",null);
@@ -52,7 +51,6 @@ public class MainService extends Service {
                 MainActivity.list=list;
 
                 //发送广播
-                Log.i("TAG","MainService发送广播");
                 Intent intent=new Intent("msy.calender.main_listview.show");
                 sendBroadcast(intent);
 

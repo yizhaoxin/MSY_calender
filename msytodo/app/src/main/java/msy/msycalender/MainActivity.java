@@ -43,8 +43,7 @@ public class MainActivity extends Activity {
         listView=findViewById(R.id.main_lv);
         receiver=new MainBroadcastReceiver();
         button1=findViewById(R.id.btn_add_even);
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        selectDate=simpleDateFormat.format(new Date());
+        selectDate=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
         //日历日期
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -79,7 +78,6 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
         //启动服务
-        Log.i("TAG","MainActivity已启动服务");
         final Intent i=new Intent(MainActivity.this,MainService.class);
         startService(i);
 
@@ -108,7 +106,6 @@ public class MainActivity extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i("TAG","MainActivity中的广播动作运行");
             MainAdapter adapter=new MainAdapter();
             listView.setAdapter(adapter);
         }
